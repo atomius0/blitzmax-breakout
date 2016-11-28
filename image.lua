@@ -35,4 +35,26 @@ function generateQuads(cell_w, cell_h, first, count, sw, sh)
 end
 
 
+-- the flags parameter from the blitzmax LoadImage function was left out on purpose
+-- since it isn't used in this project
+-- returns: table containing image and quad data. to be used with function drawImage.
+function loadImage(url)
+	--todo
+end
+
+
+-- flags parameter was left out here, too (see function above)
+-- returns: table containing image and quad data. to be used with function drawImage.
+function loadAnimImage(url, cell_w, cell_h, first, count)
+	--todo
+end
+
+
+-- parameters:
+-- image - the table returned by loadImage or loadAnimImage
+function drawImage(image, x, y, frame)
+	frame = frame or 0 -- set default value for frame
+	
+	--todo
+end
 
