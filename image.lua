@@ -6,9 +6,9 @@
 
 local _autoMidHandle = false
 
-function autoMidHandle(v)
-	assert(type(v) == "boolean", "boolean required")
-	_autoMidHandle = v
+function autoMidHandle(b)
+	assert(type(b) == "boolean", "boolean required")
+	_autoMidHandle = b
 end
 
 
@@ -62,8 +62,7 @@ function loadAnimImage(url, cell_w, cell_h, first, count)
 	t.quads = generateQuads(cell_w, cell_h, first, count, t.img:getDimensions())
 	
 	t.handle_x, t.handle_y = 0, 0
-	
-	if _autoMidHandle then midHandleImage(t)
+	if _autoMidHandle then midHandleImage(t) end
 	return t
 end
 
