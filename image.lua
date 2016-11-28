@@ -46,7 +46,12 @@ end
 -- flags parameter was left out here, too (see function above)
 -- returns: table containing image and quad data. to be used with function drawImage.
 function loadAnimImage(url, cell_w, cell_h, first, count)
+	local t = {}
+	
+	
+	
 	--todo
+	return r
 end
 
 

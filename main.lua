@@ -24,6 +24,10 @@
 
 require "strict" -- temporary
 
+---[[
+require "_tests.test_image"
+--]]
+--[[
 createclass = require "createclass"
 TList       = require "linkedlist"
 
@@ -38,4 +42,6 @@ function love.load()
 	--pipes = love.graphics.newImage()
 	
 end
+
+--]]
 
