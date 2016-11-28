@@ -1,8 +1,23 @@
 -- image handling functions
 -- replicates some functionality of BlitzMax's Max2D module
 
--- TODO: LoadImage, LoadAnimImage, DrawImage
 
+--[[ TODO:
+
+- add private locals for rotation, scale_x and scale_y
+
+- add functions: setRotation, setScale, setAlpha, setColor, setBlend
+
+- note: setRotation in bmax uses degrees, love.graphics.draw uses radians:
+  research how to convert degrees to radians!
+
+- in func setBlend: handle blend modes for alphablend and maskblend
+
+- use parameters of love.graphics.draw() for rotation and scaling.
+
+- research how to do setAlpha, setColor, setBlend
+
+--]]
 
 local _autoMidHandle = false
 
@@ -12,7 +27,8 @@ function autoMidHandle(b)
 end
 
 
-function midHandleImage(t)
+function midHandleImage(image)
+	local t = image
 	assert(type(t) == "table")
 	local x, y = t.img:getDimensions()
 	t.handle_x = x * .5
@@ -82,8 +98,9 @@ end
 -- parameters:
 -- image - the table returned by loadImage or loadAnimImage
 function drawImage(image, x, y, frame)
+	local t = image
 	frame = frame or 1 -- set default value for frame
-	
-	--todo
+	love.graphics.draw(t.img, t.quads[frame], x, y)
+	-- TODO: handle rotation and scaling
 end
 
