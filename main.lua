@@ -1,7 +1,7 @@
 -- blitzmax_breakout
 -- a port of the BlitzMax Breakout sample game to LÖVE 2D
 
--- TODO: write LoadImage, LoadAnimImage and DrawImage functions
+-- TODO: write AutoMidHandle, LoadImage, LoadAnimImage and DrawImage functions
 -- TODO: put function generateQuads into a module of its own.
 --       from: D:\Dateien\Programming\lua\love\projects\tests\quad_test\main.lua
 
