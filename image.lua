@@ -43,23 +43,20 @@ function generateQuads(cell_w, cell_h, first, count, sw, sh)
 end
 
 
--- the flags parameter from the blitzmax LoadImage function was left out on purpose
--- since it isn't used in this project
--- returns: table containing image and quad data. to be used with function drawImage.
-function loadImage(url)
-	--todo
-end
-
-
--- flags parameter was left out here, too (see function above)
--- returns: table containing image and quad data. to be used with function drawImage.
-function loadAnimImage(url, cell_w, cell_h, first, count)
+function _loadImage(is_anim, url, cell_w, cell_h, first, count)
 	local t = {}
 	
 	t.img = love.graphics.newImage(url)
 	if not t.img then return end
 	
-	t.quads = generateQuads(cell_w, cell_h, first, count, t.img:getDimensions())
+	if is_anim then
+		t.quads = generateQuads(cell_w, cell_h, first, count, t.img:getDimensions())
+	else
+		-- if it is not an animated image,
+		-- generate a single quad spanning the whole image.
+		local x, y = t.img:getDimensions()
+		r.quads = generateQuads(x, y, 1, 1, x, y)
+	end
 	
 	t.handle_x, t.handle_y = 0, 0
 	if _autoMidHandle then midHandleImage(t) end
@@ -67,10 +64,25 @@ function loadAnimImage(url, cell_w, cell_h, first, count)
 end
 
 
+-- the flags parameter from the blitzmax LoadImage function was left out on purpose
+-- since it isn't used in this project
+-- returns: table containing image and quad data. to be used with function drawImage.
+function loadImage(url)
+	return _loadImage(false, url)
+end
+
+
+-- flags parameter was left out here, too (see function above)
+-- returns: table containing image and quad data. to be used with function drawImage.
+function loadAnimImage(url, cell_w, cell_h, first, count)
+	return _loadImage(true, url, cell_w, cell_h, first, count)
+end
+
+
 -- parameters:
 -- image - the table returned by loadImage or loadAnimImage
 function drawImage(image, x, y, frame)
-	frame = frame or 0 -- set default value for frame
+	frame = frame or 1 -- set default value for frame
 	
 	--todo
 end
