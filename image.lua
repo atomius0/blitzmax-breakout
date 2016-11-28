@@ -12,6 +12,14 @@ function autoMidHandle(v)
 end
 
 
+function midHandleImage(t)
+	assert(type(t) == "table")
+	local x, y = t.img:getDimensions()
+	t.handle_x = x * .5
+	t.handle_y = y * .5
+end
+
+
 -- generates quads, similar to how LoadAnimImage from the BlitzMax Max2D module works.
 -- parameters:
 -- 'first' is one-based instead of zero based
@@ -48,10 +56,15 @@ end
 function loadAnimImage(url, cell_w, cell_h, first, count)
 	local t = {}
 	
+	t.img = love.graphics.newImage(url)
+	if not t.img then return end
 	
+	t.quads = generateQuads(cell_w, cell_h, first, count, t.img:getDimensions())
 	
-	--todo
-	return r
+	t.handle_x, t.handle_y = 0, 0
+	
+	if _autoMidHandle then midHandleImage(t)
+	return t
 end
 
 
