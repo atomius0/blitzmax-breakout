@@ -1,12 +1,12 @@
 
 require "image"
-
+dbg = require "debugger"
 
 tiles_img = nil
 
 function love.load()
 	
-	autoMidHandle(true)
+	--autoMidHandle(true)
 	tiles_img = loadAnimImage("media/tiles.png", 32, 20, 1, 5)
 	assert(tiles_img)
 end
@@ -20,9 +20,13 @@ function love.draw()
 	assert(tiles_img.img)
 	print("ok")
 	--]]
+	
+	--dbg()
+	
 	for i = 1, 5 do
-		--TODO: this draws the same tile 5 times (the green one)
-		drawImage(tiles_img, 100, 50 + 32 * (i-1))
+		--BUG: this draws the same tile 5 times (the green one)
+		-- fixed: forgot the image index parameter.
+		drawImage(tiles_img, 100, 50 + 32 * (i-1), i)
 		print(tiles_img, 100, 50 + 32 * (i-1))
 	end
 end
