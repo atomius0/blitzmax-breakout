@@ -1,22 +1,6 @@
 -- image handling functions
 -- replicates some functionality of BlitzMax's Max2D module
 
-
---[[ TODO:
-
-- add functions: setBlend
-
-- note: setRotation in bmax uses degrees, love.graphics.draw uses radians:
-  research how to convert degrees to radians!
-
-- in func setBlend: handle blend modes for alphablend and maskblend
-
-- use parameters of love.graphics.draw() for rotation and scaling.
-
-- research how to do setAlpha, setColor, setBlend
-
---]]
-
 local _autoMidHandle = false
 local _rotation = 0
 local _scale_x, _scale_y = 1, 1
@@ -58,7 +42,10 @@ Blend mode   | Effect
 --]]
 function setBlend(blend)
 	assert(type(blend) == "string")
-	
+	--NOTE: do nothing, bmx-breakout only uses ALPHABLEND, which is the default mode in love2d.
+	-- bmx-breakout also uses MASKBLEND, but it has no real effect
+	-- (except for making the hiscore's background bar opaque instead of transparent.
+	-- but we can turn it opaque easily, even without MASKBLEND)
 end
 
 
