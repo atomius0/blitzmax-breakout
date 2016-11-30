@@ -37,9 +37,17 @@ end
 function midHandleImage(image)
 	local t = image
 	assert(type(t) == "table")
+	assert(type(t.quads) == "table" and t.quads[1]) -- make sure there is at least 1 quad
+	
+	local _, w, h
+	_, _, w, h = t.quads[1]:getViewport()
+	t.handle_x = w * .5
+	t.handle_y = h * .5
+	--[[
 	local x, y = t.img:getDimensions()
 	t.handle_x = x * .5
 	t.handle_y = y * .5
+	--]]
 end
 
 
@@ -58,7 +66,7 @@ function generateQuads(cell_w, cell_h, first, count, sw, sh)
 	for cell = first-1, first-1+count-1 do
 		local x = cell % x_cells * cell_w
 		local y = math.floor(cell / x_cells) * cell_h
-		print(x_cells,y_cells,cell,x,y)
+		--print(x_cells,y_cells,cell,x,y)
 		quads[cell+1-first+1] = love.graphics.newQuad(x, y, cell_w, cell_h, sw, sh)
 	end
 	

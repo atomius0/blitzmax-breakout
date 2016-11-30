@@ -14,15 +14,22 @@ function love.load()
 	
 	-- fixes rotation around wrong origin,
 	--TODO: fix it in image.lua (midHandleImage uses the whole size of the image...)
-	tiles_img.handle_x = 32 * .5
-	tiles_img.handle_y = 20 * .5
+	--tiles_img.handle_x = 32 * .5
+	--tiles_img.handle_y = 20 * .5
+	
+	
+	for i, v in ipairs(tiles_img.quads) do
+		--print(i, v:getTextureDimensions())
+		print(i, v:getViewport())
+	end
+	
 end
 
 
 function love.update(dt)
 	rotation = rotation + dt*60
 	setRotation(rotation)
-	print(1*60*dt)
+	--print(1*60*dt)
 end
 
 -- you can't draw in love.update,
