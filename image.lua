@@ -24,7 +24,6 @@ local _rotation = 0
 
 function setRotation(r)
 	_rotation = math.rad(r)
-	--TODO: test this
 end
 
 
@@ -43,11 +42,6 @@ function midHandleImage(image)
 	_, _, w, h = t.quads[1]:getViewport()
 	t.handle_x = w * .5
 	t.handle_y = h * .5
-	--[[
-	local x, y = t.img:getDimensions()
-	t.handle_x = x * .5
-	t.handle_y = y * .5
-	--]]
 end
 
 
