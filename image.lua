@@ -1,6 +1,13 @@
 -- image handling functions
 -- replicates some functionality of BlitzMax's Max2D module
 
+--[[
+--TODO: implement tileImage function! how?
+use image:setWrap() and then draw the image with a large quad. see:
+https://love2d.org/wiki/(Image):setWrap
+https://love2d.org/wiki/WrapMode
+--]]
+
 local _autoMidHandle = false
 local _rotation = 0
 local _scale_x, _scale_y = 1, 1
@@ -133,5 +140,15 @@ function drawImage(image, x, y, frame)
 	frame = frame or 1 -- set default value for frame
 	love.graphics.draw(t.img, t.quads[frame], x, y, _rotation, _scale_x, _scale_y, t.handle_x, t.handle_y)
 	-- TODO: handle rotation and scaling
+end
+
+
+function tileImage(image, x, y, frame)
+	x = x or 0
+	y = y or 0
+	frame = frame or 0
+	
+	assert(false, "not implemented")
+	--TODO: this
 end
 
