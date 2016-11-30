@@ -4,9 +4,7 @@
 
 --[[ TODO:
 
-- add private locals for rotation, scale_x and scale_y
-
-- add functions: setScale, setAlpha, setColor, setBlend
+- add functions: setBlend
 
 - note: setRotation in bmax uses degrees, love.graphics.draw uses radians:
   research how to convert degrees to radians!
@@ -36,14 +34,14 @@ end
 
 
 function setAlpha(alpha) -- range: 0.0 - 1.0
-	assert(false, "not implemented")
-	--TODO: this
+	local r, g, b, a = love.graphics.getColor()
+	love.graphics.setColor(r, g, b, 255 * alpha)
 end
 
 
 function setColor(red, green, blue) -- range: 0 - 255
-	assert(false, "not implemented")
-	--TODO: this
+	local r, g, b, a = love.graphics.getColor()
+	love.graphics.setColor(red, green, blue, a)
 end
 
 

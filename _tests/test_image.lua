@@ -54,7 +54,21 @@ function love.draw()
 	
 	setRotation(rotation)
 	setScale(scale, scale*2)
+	setAlpha(.5)
 	drawImage(tiles_img, 400, 300)
+	
+	setScale(1, 2)
+	
+	setColor(255, 0, 0)
+	drawImage(full_img, 450, 300)
+	setColor(0, 255, 0)
+	drawImage(full_img, 450, 350)
+	setColor(0, 0, 255)
+	drawImage(full_img, 450, 400)
+	
+	
+	setColor(255, 255, 255)
+	setAlpha(1)
 	
 	setScale(1, 1)
 end
