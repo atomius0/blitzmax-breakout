@@ -20,6 +20,13 @@
 --]]
 
 local _autoMidHandle = false
+local _rotation = 0
+
+function setRotation(r)
+	_rotation = math.rad(r)
+	--TODO: test this
+end
+
 
 function autoMidHandle(b)
 	assert(type(b) == "boolean", "boolean required")

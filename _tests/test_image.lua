@@ -4,11 +4,20 @@ dbg = require "debugger"
 
 tiles_img = nil
 
+rotation = 0
+
 function love.load()
 	
 	--autoMidHandle(true)
 	tiles_img = loadAnimImage("media/tiles.png", 32, 20, 1, 5)
 	assert(tiles_img)
+end
+
+
+function love.update(dt)
+	rotation = rotation + dt*60
+	setRotation(rotation)
+	print(1*60*dt)
 end
 
 -- you can't draw in love.update,
@@ -27,7 +36,6 @@ function love.draw()
 		--BUG: this draws the same tile 5 times (the green one)
 		-- fixed: forgot the image index parameter.
 		drawImage(tiles_img, 100, 50 + 32 * (i-1), i)
-		print(tiles_img, 100, 50 + 32 * (i-1))
 	end
 end
 
