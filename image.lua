@@ -107,7 +107,7 @@ end
 function drawImage(image, x, y, frame)
 	local t = image
 	frame = frame or 1 -- set default value for frame
-	love.graphics.draw(t.img, t.quads[frame], x, y)
+	love.graphics.draw(t.img, t.quads[frame], x, y, _rotation, nil, nil, t.handle_x, t.handle_y)
 	-- TODO: handle rotation and scaling
 end
 

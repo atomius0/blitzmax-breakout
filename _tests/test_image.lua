@@ -8,9 +8,14 @@ rotation = 0
 
 function love.load()
 	
-	--autoMidHandle(true)
+	autoMidHandle(true)
 	tiles_img = loadAnimImage("media/tiles.png", 32, 20, 1, 5)
 	assert(tiles_img)
+	
+	-- fixes rotation around wrong origin,
+	--TODO: fix it in image.lua (midHandleImage uses the whole size of the image...)
+	tiles_img.handle_x = 32 * .5
+	tiles_img.handle_y = 20 * .5
 end
 
 
