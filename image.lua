@@ -57,7 +57,8 @@ Blend mode   | Effect
 - SHADEBLEND | Pixel colors are multiplied with backbuffer pixel colors, giving a 'shading' effect
 --]]
 function setBlend(blend)
-
+	assert(type(blend) == "string")
+	
 end
 
 
