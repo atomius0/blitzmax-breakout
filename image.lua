@@ -80,7 +80,7 @@ function _loadImage(is_anim, url, cell_w, cell_h, first, count)
 		-- if it is not an animated image,
 		-- generate a single quad spanning the whole image.
 		local x, y = t.img:getDimensions()
-		r.quads = generateQuads(x, y, 1, 1, x, y)
+		t.quads = generateQuads(x, y, 1, 1, x, y)
 	end
 	
 	t.handle_x, t.handle_y = 0, 0
