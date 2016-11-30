@@ -6,7 +6,7 @@
 
 - add private locals for rotation, scale_x and scale_y
 
-- add functions: setRotation, setScale, setAlpha, setColor, setBlend
+- add functions: setScale, setAlpha, setColor, setBlend
 
 - note: setRotation in bmax uses degrees, love.graphics.draw uses radians:
   research how to convert degrees to radians!
@@ -21,9 +21,45 @@
 
 local _autoMidHandle = false
 local _rotation = 0
+local _scale_x, _scale_y = 1, 1
+
 
 function setRotation(r)
 	_rotation = math.rad(r)
+end
+
+
+function setScale(sx, sy)
+	_scale_x = sx
+	_scale_y = sy
+end
+
+
+function setAlpha(alpha) -- range: 0.0 - 1.0
+	assert(false, "not implemented")
+	--TODO: this
+end
+
+
+function setColor(red, green, blue) -- range: 0 - 255
+	assert(false, "not implemented")
+	--TODO: this
+end
+
+
+--[[
+blend should be one of:
+
+Blend mode   | Effect
+---------------------
+- MASKBLEND  | Pixels are drawn only if their alpha component is greater than .5
+- SOLIDBLEND | Pixels overwrite existing backbuffer pixels
+- ALPHABLEND | Pixels are alpha blended with existing backbuffer pixels
+- LIGHTBLEND | Pixel colors are added to backbuffer pixel colors, giving a 'lighting' effect
+- SHADEBLEND | Pixel colors are multiplied with backbuffer pixel colors, giving a 'shading' effect
+--]]
+function setBlend(blend)
+
 end
 
 
@@ -109,7 +145,7 @@ end
 function drawImage(image, x, y, frame)
 	local t = image
 	frame = frame or 1 -- set default value for frame
-	love.graphics.draw(t.img, t.quads[frame], x, y, _rotation, nil, nil, t.handle_x, t.handle_y)
+	love.graphics.draw(t.img, t.quads[frame], x, y, _rotation, _scale_x, _scale_y, t.handle_x, t.handle_y)
 	-- TODO: handle rotation and scaling
 end
 

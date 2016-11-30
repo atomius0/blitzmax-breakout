@@ -25,13 +25,17 @@ end
 
 
 function love.update(dt)
-	rotation = rotation + dt*60
+	--rotation = rotation + dt*60
+	--rotation = rotation % 360
+	rotation = (rotation + dt*60) % 360
 	setRotation(rotation)
 	--print(1*60*dt)
 end
 
 
 function love.draw()
+	love.graphics.print("rotation: " .. tostring(rotation), 10, 10)
+	
 	--dbg()
 	
 	for i = 1, 5 do
@@ -39,7 +43,19 @@ function love.draw()
 	end
 	
 	setRotation(90)
+	
+	--local scale = math.sin(rotation / 360 * 2)
+	--local scale = math.sin(math.rad(rotation)) * 2
+	local scale = (math.sin(math.rad(rotation)) + 1.25) * 1
+	setScale(scale, scale)
+	
 	drawImage(full_img, 150, 300)
 	love.graphics.circle("fill", 150, 300, 4)
+	
+	setRotation(rotation)
+	setScale(scale, scale*2)
+	drawImage(tiles_img, 400, 300)
+	
+	setScale(1, 1)
 end
 
