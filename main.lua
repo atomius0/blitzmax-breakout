@@ -14,6 +14,7 @@
 
 
 require "strict" -- temporary
+require('mobdebug').start()
 
 ---[[
 require "_tests.test_image"
