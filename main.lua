@@ -1,5 +1,5 @@
 -- blitzmax_breakout
--- a port of the BlitzMax Breakout sample game to LÖVE 2D
+-- a port of the BlitzMax Breakout sample game to LÃ–VE 2D
 
 
 -- DONE: test list (see note below)
@@ -14,12 +14,13 @@
 
 
 require "strict" -- temporary
-require('mobdebug').start()
+--require('mobdebug').start()
 
 --[[
 require "_tests.test_image"
 --]]
 ---[[
+require "random"
 createclass = require "createclass"
 TList       = require "linkedlist"
 
@@ -50,11 +51,52 @@ maxf = math.max
 -- Public
 
 do Ball = createclass()
-	-- TODO: check how to concatenate two tables.
-	-- (keeping the identity of the first table?)
-	-- so, add content of table 2 to table 1...
 	Ball.x, Ball.y = 0, 0
-	Ball.dx, Ball.dy, ball.spd
+	Ball.dx, Ball.dy, Ball.spd, Ball.rot = 0, 0, 0, 0
+	-- Ball.visual = 0 -- unused variable in original code
+	
+	function Ball:Update()
+		self.x = self.x + (self.dx * self.spd)
+		self.y = self.y + (self.dy * self.spd)
+		if self.x < 34 or self.x > 606 then
+			self.dx = -self.dx
+		end
+		if self.y < 50 then
+			self.dy = -self.dy
+		end
+		if self.y > HEIGHT-8 then
+			ballcount = ballcount -1
+			balllist:remove(self)
+		else
+			if self.dy > 0 then
+				if self.y > playerY - 8 then
+					if self.x > playerX-32 and self.x < playerX-32 then
+						self.dy = self.dy*-1
+					end
+				end
+			end
+			self.rot = self.rot + 10
+		end
+	end
+	
+	function Ball:draw(offx, offy)
+	--  	SetRotation rot
+	--  	DrawImage ballvis,x+offx,y+offy
+	--  	SetRotation 0
+	end--  EndMethod
+    --  
+	function Ball.create(x, y)
+		x = x or WIDTH / 2
+		y = y or HEIGHT / 2
+		local b = Ball()
+		ballcount = ballcount + 1
+		b.x = x
+		b.y = y
+		b.dx = rnd(-2, 2)
+		b.dy = rnd(-2, 2)
+		b.spd = 4 -- 0.1
+		return b
+	end
 end
 
 function love.load()
@@ -69,4 +111,31 @@ end
 
 
 --]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
