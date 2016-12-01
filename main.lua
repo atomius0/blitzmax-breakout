@@ -80,11 +80,11 @@ do Ball = createclass()
 	end
 	
 	function Ball:draw(offx, offy)
-	--  	SetRotation rot
-	--  	DrawImage ballvis,x+offx,y+offy
-	--  	SetRotation 0
-	end--  EndMethod
-    --  
+		setRotation(self.rot)
+		drawImage(ballvis, self.x + offx, self.y + offy)
+		setRotation(0)
+	end
+    
 	function Ball.create(x, y)
 		x = x or WIDTH / 2
 		y = y or HEIGHT / 2
