@@ -99,6 +99,101 @@ do Ball = createclass()
 	end
 end
 
+
+-- all tiles are a standard size so
+do Tile = createclass() --Type Tile
+--  Field x#,y#
+--  Field typ = 0
+--  Field state = 0
+--  Field rot#=0,size#=1
+--
+--  Method Draw(offx,offy)
+--    Select state
+--      Case 0
+--        SetRotation rot
+--        If size>1
+--          SetScale size,size
+--          size=size*0.9
+--        Else
+--          size = 1
+--          SetScale 0.95+(0.05*Cos(gTime)),0.95+(0.05*Sin(gTime))
+--        EndIf
+--      Case 1
+--        SetRotation rot
+--        SetScale size,size
+--    EndSelect
+--    Select typ
+--      Case 0
+--        DrawImage tiles_img,x+offx,y+offy+(2*Sin(gtime)),0
+--      Case 1
+--        DrawImage tiles_img,x+offx,y+offy+(2*Sin(gtime)),1
+--      Case 2
+--        DrawImage tiles_img,x+offx,y+offy+(2*Sin(gtime)),2
+--      Case 3
+--        DrawImage tiles_img,x+offx,y+offy+(2*Sin(gtime)),3
+--      Case 4
+--        DrawImage tiles_img,x+offx,y+offy+(2*Sin(gtime)),4
+--    EndSelect
+--
+--    SetScale 1,1
+--    SetRotation 0
+--  EndMethod
+--
+--  Method Update()
+--    Local c
+--    Local b:Ball
+--    If state = 0
+--      'Check this tile for collision with all of the balls
+--      For b=EachIn BallList
+--        If b.x>x-4 And b.x<x+24
+--          If b.y>y-4 And b.y<y+24
+--            b.dy=-b.dy
+--            Select typ
+--              Case 1
+--                If ballcount=1
+--                  For c=0 Until 2
+--                    BallList.AddLast(ball.Create(b.x,b.y))
+--                  Next
+--                EndIf
+--                state = 1
+--                size = 1
+--              Case 2
+--                typ = 3
+--                size=1.5
+--              Case 3
+--                typ = 4
+--                size=1.5
+--              Default
+--                Score:+((1+typ)*100)
+--                state = 1
+--            EndSelect
+--            Return
+--          EndIf
+--        EndIf
+--      Next
+--    Else
+--      y:+4
+--      rot:+5
+--      size:-.005
+--      If y>HEIGHT
+--        BallList.Remove(b)
+--      EndIf
+--    EndIf
+--  EndMethod
+--
+--
+--  Function Create:Tile(x=0,y=0,typ=0)
+--    Local t:Tile = New Tile
+--      t.x=x
+--      t.y=y
+--      t.typ = typ
+--      Return t
+--  EndFunction
+end --EndType
+
+
+-------------------------------------------------------------------------------
+
 function love.load()
 	-- width and height are set in conf.lua
 	WIDTH, HEIGHT = love.graphics.getDimensions()
