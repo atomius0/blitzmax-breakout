@@ -16,22 +16,51 @@
 require "strict" -- temporary
 require('mobdebug').start()
 
----[[
+--[[
 require "_tests.test_image"
 --]]
---[[
+---[[
 createclass = require "createclass"
 TList       = require "linkedlist"
 
 
+WIDTH, HEIGHT = nil, nil -- we set these in love.load()
+SHADOW_ON = true
+SHADOW_SIZE = 10
+
+gtime = nil
+pipes_img = nil
+tiles_img = nil
+logo_img = nil
+paddle = nil
+ballvis = nil
+
+--setup the level
+tilelist = nil
+balllist = nil
+playerX, playerY = 0, 0
+score = 0
+
+-- Private
+ballcount = 0
+
+minf = math.min
+
+maxf = math.max
+-- Public
+
+do Ball = createclass()
+	-- TODO: check how to concatenate two tables.
+	-- (keeping the identity of the first table?)
+	-- so, add content of table 2 to table 1...
+	Ball.x, Ball.y = 0, 0
+	Ball.dx, Ball.dy, ball.spd
+end
+
 function love.load()
-	WIDTH, HEIGHT = 640, 480
+	-- width and height are set in conf.lua
+	WIDTH, HEIGHT = love.graphics.getDimensions()
 	
-	SHADOW_ON = true
-	SHADOW_SIZE = 10
-	
-	gtime = nil
-	--pipes = love.graphics.newImage()
 	
 end
 
