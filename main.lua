@@ -138,47 +138,47 @@ do Tile = createclass()
 		setRotation(0)
 	end
 	
-	--  Method Update()
-	--    Local c
-	--    Local b:Ball
-	--    If state = 0
-	--      'Check this tile for collision with all of the balls
-	--      For b=EachIn BallList
-	--        If b.x>x-4 And b.x<x+24
-	--          If b.y>y-4 And b.y<y+24
-	--            b.dy=-b.dy
-	--            Select typ
-	--              Case 1
-	--                If ballcount=1
-	--                  For c=0 Until 2
-	--                    BallList.AddLast(ball.Create(b.x,b.y))
-	--                  Next
-	--                EndIf
-	--                state = 1
-	--                size = 1
-	--              Case 2
-	--                typ = 3
-	--                size=1.5
-	--              Case 3
-	--                typ = 4
-	--                size=1.5
-	--              Default
-	--                Score:+((1+typ)*100)
-	--                state = 1
-	--            EndSelect
-	--            Return
-	--          EndIf
-	--        EndIf
-	--      Next
-	--    Else
-	--      y:+4
-	--      rot:+5
-	--      size:-.005
-	--      If y>HEIGHT
-	--        BallList.Remove(b)
-	--      EndIf
-	--    EndIf
-	--  EndMethod
+	function Tile:update()--  Method Update()
+		local c = 0--    Local c
+		-- local b = nil -- not needed, is local variable in for-loop below
+		if self.state == 0 then--    If state = 0
+			-- Check this tile for collision with all of the balls
+			for b in balllist:eachin() do--      For b=EachIn BallList
+				if b.x > self.x-4 and b.x < self.x+24 then--        If b.x>x-4 And b.x<x+24
+					if b.y > self.y-4 and b.y < self.y+24 then--          If b.y>y-4 And b.y<y+24
+						b.dy = -b.dy--            b.dy=-b.dy
+						if self.typ == 1 then--            Select typ
+							--##--              Case 1
+							--                If ballcount=1
+							--                  For c=0 Until 2
+							--                    BallList.AddLast(ball.Create(b.x,b.y))
+							--                  Next
+							--                EndIf
+							--                state = 1
+							--                size = 1
+						elseif self.typ == 2 then--              Case 2
+							--                typ = 3
+							--                size=1.5
+						elseif self.typ == 3 then--              Case 3
+							--                typ = 4
+							--                size=1.5
+						else--              Default
+							--                Score:+((1+typ)*100)
+							--                state = 1
+						end--            EndSelect
+						--            Return
+					end--          EndIf
+				end--        EndIf
+			end--      Next
+		else--    Else
+			--      y:+4
+			--      rot:+5
+			--      size:-.005
+			--      If y>HEIGHT
+			--        BallList.Remove(b)
+			--      EndIf
+		end--    EndIf
+	end--  EndMethod
 	--
 	--
 	--  Function Create:Tile(x=0,y=0,typ=0)
