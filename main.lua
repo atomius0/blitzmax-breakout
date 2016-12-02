@@ -205,6 +205,169 @@ function love.load()
 end
 
 
+--Graphics WIDTH,HEIGHT,DEPTH
+--
+--AutoMidHandle True
+--
+--'Media
+--Global back:TImage[2]
+--back[0] = LoadImage("media\back1.png")
+--back[1] = LoadImage("media\back2.png")
+--Pipes_img=LoadAnimImage("media\pipes.png",32,32,0,4)
+--Tiles_img=LoadAnimImage("media\tiles.png",32,20,0,5)
+--paddle = LoadImage("media\paddle.png")
+--ballvis = LoadImage("media\ball.png")
+--logo_img=LoadImage("media\B-Max.png")
+--
+--
+--Tilelist:TList = New TList
+--Balllist:TList = New TList
+--playerX# = Width/2
+--PlayerY# = Height-40
+--Score=0
+--
+--ResetGame()
+--
+--
+--
+--HideMouse
+--While Not KeyDown(KEY_ESCAPE)
+--
+--	'Update Players Position
+--	playerx = minf(574,maxf(64,MouseX()))
+--	'Update Balls
+--	UpdateBalls()
+--	'Update Tiles
+--	UpdateTiles()
+--	'Draw Level
+--	DrawLevel()
+--
+--	gTime:+10
+--
+--	SetAlpha .75
+--	SetColor 0,0,255
+--	DrawRect 0,0,Width,20
+--
+--	SetBlend ALPHABLEND
+--
+--	SetAlpha 0.5
+--	SetColor 0,0,0
+--	DrawText "Score:"+Score,4,4
+--
+--	SetAlpha 1
+--	SetColor 255,255,255
+--	DrawText "Score:"+Score+" "+ballcount,2,2
+--
+--	Flip
+--Wend
+--
+--End
+--
+--
+--Function DrawLevel()
+--  Local w,aa#
+--  TileImage back[1],0,gTime/20
+--  SetBlend ALPHABLEND
+--  DrawImage logo_img,width/2,height/2
+--  aa#=0.5+(0.5*Cos(gtime/50))
+--  SetBlend AlphaBLEND
+--  SetAlpha aa
+--  TileImage back[0],0,gTime/10
+--
+--  If ShadowOn
+--    SetColor 0,0,0
+--    SetBlend AlphaBLEND
+--    SetAlpha 0.5
+--    DrawPipes ShadowSize+16,ShadowSize+16
+--
+--    DrawTiles ShadowSize+16,ShadowSize+10
+--    DrawPlayer ShadowSize,ShadowSize
+--    DrawBalls ShadowSize,ShadowSize
+--  EndIf
+--
+--  SetColor 255,255,255
+--  SetBlend MASKBLEND
+--  SetAlpha 1
+--  DrawPipes()
+--  DrawTiles()
+--  DrawPlayer()
+--  DrawBalls()
+--EndFunction
+--
+--Function ResetGame()
+--  TileList = New TList
+--  BallList = New TList
+--  Local x,y
+--  For y=0 Until 5
+--    For x=0 Until 18
+--        Tilelist.AddLast(Tile.Create(38+x*32,(y*24)+66,4-Y))
+--    Next
+--  Next
+--
+--  BallList.AddLast(Ball.Create())
+--EndFunction
+--
+--Function DrawPipes(x=16,y=16)
+--  Local tmp
+--
+--  'top
+--  For tmp=0 Until 18
+--    DrawImage Pipes_img,x+32+(tmp*32),y+16,3
+--  Next
+--
+--  'sides
+--  For tmp=0 Until 14
+--    DrawImage Pipes_img,x,y+48+(tmp*32),2
+--    DrawImage Pipes_img,x+Width-32,y+48+(tmp*32),2
+--  Next
+--
+--  'Corners
+--  DrawImage Pipes_img,x,y+16 ,0
+--  DrawImage Pipes_img,x+Width-32,y+16,1
+--
+--EndFunction
+--
+--Function DrawTiles(x_off=10, y_off=10)
+--	Local tl:Tile
+--	Local any=0
+--  For tl=EachIn TileList
+--		tl.Draw(x_off, y_off)
+--		any=1
+--	Next
+--	If Not any 
+--	 ResetGame()
+--	 score:+10000
+--	EndIf
+--EndFunction
+--
+--Function DrawBalls(x_off=0, y_off=0)
+--	Local bl:Ball
+--	For bl=EachIn balllist
+--		bl.Draw(x_off, y_off)
+--	Next
+--EndFunction
+--
+--Function UpdateBalls()
+--  If ballcount=0
+--    BallList.AddLast(Ball.Create(Width/2,Height/2))
+--  Else
+--  	Local bl:Ball
+--  	For bl = EachIn BallList
+--  		bl.Update()
+--  	Next
+--  EndIf
+--EndFunction
+--
+--Function UpdateTiles()
+--	Local tl:Tile
+--	For tl=EachIn tilelist
+--		tl.Update()
+--	Next
+--EndFunction
+--
+--Function DrawPlayer(x_off=0,y_off=0)
+--  DrawImage paddle, playerx+x_off, playery+y_off
+--End Function
 
 
 
