@@ -149,12 +149,12 @@ do Tile = createclass()
 						b.dy = -b.dy--            b.dy=-b.dy
 						if self.typ == 1 then--            Select typ
 							--##--              Case 1
-							--                If ballcount=1
-							--                  For c=0 Until 2
-							--                    BallList.AddLast(ball.Create(b.x,b.y))
-							--                  Next
-							--                EndIf
-							--                state = 1
+							if ballcount == 1 then--                If ballcount=1
+								for c = 0, 1 do -- or 2? --                  For c=0 Until 2
+									balllist.addLast(Ball.create(b.x, b.y))--                    BallList.AddLast(ball.Create(b.x,b.y))
+								end--                  Next
+							end--                EndIf
+							--                state = 1                           ------------------ continue here ------------
 							--                size = 1
 						elseif self.typ == 2 then--              Case 2
 							--                typ = 3
