@@ -228,7 +228,11 @@ function love.load()
 end
 
 
-
+function love.keypressed(key)
+	if key == "escape" then
+		love.event.push('quit')
+	end
+end
 
 --While Not KeyDown(KEY_ESCAPE)
 --
