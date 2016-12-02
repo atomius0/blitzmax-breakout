@@ -151,43 +151,47 @@ do Tile = createclass()
 							--##--              Case 1
 							if ballcount == 1 then--                If ballcount=1
 								for c = 0, 1 do -- or 2? --                  For c=0 Until 2
-									balllist.addLast(Ball.create(b.x, b.y))--                    BallList.AddLast(ball.Create(b.x,b.y))
+									balllist:addLast(Ball.create(b.x, b.y))--                    BallList.AddLast(ball.Create(b.x,b.y))
 								end--                  Next
 							end--                EndIf
-							--                state = 1                           ------------------ continue here ------------
-							--                size = 1
+							self.state = 1
+							self.size = 1
 						elseif self.typ == 2 then--              Case 2
-							--                typ = 3
-							--                size=1.5
+							self.typ = 3--                typ = 3
+							self.size = 1.5--                size=1.5
 						elseif self.typ == 3 then--              Case 3
-							--                typ = 4
-							--                size=1.5
+							self.typ = 4--                typ = 4
+							self.size = 1.5--                size=1.5
 						else--              Default
-							--                Score:+((1+typ)*100)
-							--                state = 1
+							score = score + ((1 + self.typ) * 100)--                Score:+((1+typ)*100)
+							self.state = 1--                state = 1
 						end--            EndSelect
-						--            Return
+						return--            Return
 					end--          EndIf
 				end--        EndIf
 			end--      Next
 		else--    Else
-			--      y:+4
-			--      rot:+5
-			--      size:-.005
-			--      If y>HEIGHT
-			--        BallList.Remove(b)
-			--      EndIf
+			self.y = self.y + 4--      y:+4
+			self.rot = self.rot + 5--      rot:+5
+			self.size = self.size - .005--      size:-.005
+			if self.y > HEIGHT then--      If y>HEIGHT
+				balllist:remove(b)--        BallList.Remove(b)
+			end--      EndIf
 		end--    EndIf
 	end--  EndMethod
-	--
-	--
-	--  Function Create:Tile(x=0,y=0,typ=0)
-	--    Local t:Tile = New Tile
-	--      t.x=x
-	--      t.y=y
-	--      t.typ = typ
-	--      Return t
-	--  EndFunction
+	
+	
+	function Tile.create(x, y, typ)--  Function Create:Tile(x=0,y=0,typ=0)
+		x = x or 0
+		y = y or 0
+		typ = typ or 0
+		
+		local t = Tile()--    Local t:Tile = New Tile
+		t.x = x--      t.x=x
+		t.y = y--      t.y=y
+		t.typ = typ--      t.typ = typ
+		return t--      Return t
+	end--  EndFunction
 end --EndType
 
 
