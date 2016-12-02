@@ -152,3 +152,8 @@ function tileImage(image, x, y, frame)
 	--TODO: this
 end
 
+
+function drawRect(x, y, width, height)
+	love.graphics.rectangle("fill", x, y, width, height)
+end
+

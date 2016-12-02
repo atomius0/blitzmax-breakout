@@ -228,43 +228,48 @@ function love.load()
 end
 
 
-function love.keypressed(key)
+function love.keypressed(key) --While Not KeyDown(KEY_ESCAPE)
 	if key == "escape" then
-		love.event.push('quit')
+		love.event.push('quit') --End
 	end
 end
 
---While Not KeyDown(KEY_ESCAPE)
---
---	'Update Players Position
---	playerx = minf(574,maxf(64,MouseX()))
---	'Update Balls
---	UpdateBalls()
---	'Update Tiles
---	UpdateTiles()
---	'Draw Level
---	DrawLevel()
---
---	gTime:+10
---
---	SetAlpha .75
---	SetColor 0,0,255
---	DrawRect 0,0,Width,20
---
---	SetBlend ALPHABLEND
---
---	SetAlpha 0.5
---	SetColor 0,0,0
---	DrawText "Score:"+Score,4,4
---
---	SetAlpha 1
---	SetColor 255,255,255
---	DrawText "Score:"+Score+" "+ballcount,2,2
---
---	Flip
---Wend
---
---End
+
+function love.update(dt)
+	-- Update Players Position
+	playerX = minf(574,maxf(64,love.mouse.getX())) -- playerx = minf(574,maxf(64,MouseX()))
+	-- Update Balls
+	updateBalls() -- UpdateBalls()
+	-- Update Tiles
+	updateTiles() -- UpdateTiles()
+	
+	gtime = gtime + 10 -- gTime:+10
+end
+
+
+function love.draw()
+	-- Draw Level
+	drawLevel()-- DrawLevel()
+
+	setAlpha(.75)-- SetAlpha .75
+	setColor(0, 0, 255)-- SetColor 0,0,255
+	drawRect(0, 0, WIDTH, 20)-- DrawRect 0,0,Width,20
+	
+	setBlend("ALPHABLEND") -- SetBlend ALPHABLEND
+	
+	setAlpha(0,5) -- SetAlpha 0.5
+	setColor(0, 0, 0) -- SetColor 0,0,0
+	love.graphics.print("Score:" .. tostring(score), 4, 4) -- DrawText "Score:"+Score,4,4
+	
+	setAlpha(1)-- SetAlpha 1
+	setColor(255, 255, 255) -- SetColor 255,255,255
+	love.graphics.print("Score:" .. tostring(score) .. " " .. tostring(ballcount), 2, 2) -- DrawText "Score:"+Score+" "+ballcount,2,2
+	
+	-- Flip
+end
+
+
+
 --
 --
 --Function DrawLevel()
