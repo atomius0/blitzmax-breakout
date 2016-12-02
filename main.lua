@@ -20,6 +20,7 @@ require "strict" -- temporary
 require "_tests.test_image"
 --]]
 ---[[
+require "image"
 require "random"
 createclass = require "createclass"
 TList       = require "linkedlist"
@@ -30,6 +31,7 @@ SHADOW_ON = true
 SHADOW_SIZE = 10
 
 gtime = nil
+back = nil -- added because strict.lua complains otherwise
 pipes_img = nil
 tiles_img = nil
 logo_img = nil
@@ -199,38 +201,35 @@ end --EndType
 
 function love.load()
 	-- width and height are set in conf.lua
-	WIDTH, HEIGHT = love.graphics.getDimensions()
+	WIDTH, HEIGHT = love.graphics.getDimensions() --Graphics WIDTH,HEIGHT,DEPTH
+	
+	autoMidHandle(true) --AutoMidHandle True
+	
+	-- Media
+	back = {} --Global back:TImage[2]
+	back[0] = loadImage("media/back1.png") --back[0] = LoadImage("media\back1.png")
+	back[1] = loadImage("media/back2.png") --back[1] = LoadImage("media\back2.png")
+	pipes_img = loadAnimImage("media/pipes.png", 32, 32, 0, 4) --Pipes_img=LoadAnimImage("media\pipes.png",32,32,0,4)
+	tiles_img = loadAnimImage("media/tiles.png", 32, 20, 0, 5) --Tiles_img=LoadAnimImage("media\tiles.png",32,20,0,5)
+	paddle = loadImage("media/paddle.png") --paddle = LoadImage("media\paddle.png")
+	ballvis = loadImage("media/ball.png") --ballvis = LoadImage("media\ball.png")
+	logo_img = loadImage("media/B-Max.png")--logo_img=LoadImage("media\B-Max.png")
 	
 	
+	tilelist = TList() --Tilelist:TList = New TList
+	balllist = TList() --Balllist:TList = New TList
+	playerX = WIDTH / 2 --playerX# = Width/2
+	playerY = HEIGHT - 40--PlayerY# = Height-40
+	score = 0 --Score=0
+	
+	resetGame() --ResetGame()
+	
+	love.mouse.setVisible(false) --HideMouse
 end
 
 
---Graphics WIDTH,HEIGHT,DEPTH
---
---AutoMidHandle True
---
---'Media
---Global back:TImage[2]
---back[0] = LoadImage("media\back1.png")
---back[1] = LoadImage("media\back2.png")
---Pipes_img=LoadAnimImage("media\pipes.png",32,32,0,4)
---Tiles_img=LoadAnimImage("media\tiles.png",32,20,0,5)
---paddle = LoadImage("media\paddle.png")
---ballvis = LoadImage("media\ball.png")
---logo_img=LoadImage("media\B-Max.png")
---
---
---Tilelist:TList = New TList
---Balllist:TList = New TList
---playerX# = Width/2
---PlayerY# = Height-40
---Score=0
---
---ResetGame()
---
---
---
---HideMouse
+
+
 --While Not KeyDown(KEY_ESCAPE)
 --
 --	'Update Players Position
