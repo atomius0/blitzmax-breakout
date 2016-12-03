@@ -1,16 +1,16 @@
 -- blitzmax_breakout
 -- a port of the BlitzMax Breakout sample game to LÖVE 2D
 
+-- TODO: drawImage frame indices are wrong!
+-- TODO: collision with paddle doesn't work!
+-- TODO: animation speed of the tiles is way too high!
+-- TODO: ball has no alpha transparency (no image seems to have any alpha transparency...)
+-- TODO: score bar is transparent, should be opaque
 
--- DONE: test list (see note below)
--- DONE: test oop
--- DONE: test drawanimimage counterpart separately first!
-
+-- TODO: implement function tileImage in image.lua
 
 
 -- NOTE: tiles are never removed from TileList, even in the original code!
-
--- main loop in original source is at lines 198 - 226
 
 
 require "strict" -- temporary
