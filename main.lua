@@ -316,6 +316,8 @@ end --EndFunction
 
 
 function drawPipes(x, y) --Function DrawPipes(x=16,y=16)
+	x = x or 16
+	y = y or 16
 	--  Local tmp -- not needed
 	
 	-- top
@@ -336,26 +338,32 @@ function drawPipes(x, y) --Function DrawPipes(x=16,y=16)
 end --EndFunction
 
 
---Function DrawTiles(x_off=10, y_off=10)
---	Local tl:Tile
---	Local any=0
---  For tl=EachIn TileList
---		tl.Draw(x_off, y_off)
---		any=1
---	Next
---	If Not any 
---	 ResetGame()
---	 score:+10000
---	EndIf
---EndFunction
---
---Function DrawBalls(x_off=0, y_off=0)
---	Local bl:Ball
---	For bl=EachIn balllist
---		bl.Draw(x_off, y_off)
---	Next
---EndFunction
---
+function drawTiles(x_off, y_off) --Function DrawTiles(x_off=10, y_off=10)
+	x_off = x_off or 10
+	y_off = y_off or 10
+	-- Local tl:Tile -- not needed
+	local any = false -- Local any=0
+	for tl in tilelist:eachin() do --  For tl=EachIn TileList
+		tl:draw(x_off, y_off) --  tl.Draw(x_off, y_off)
+		any = true --  any=1
+	end -- Next
+	if not any then --	If Not any 
+		resetGame() --  ResetGame()
+		score = score + 10000 --  score:+10000
+	end -- EndIf
+end --EndFunction
+
+
+function drawBalls(x_off, y_off) --Function DrawBalls(x_off=0, y_off=0)
+	x_off = x_off or 0
+	y_off = y_off or 0
+	
+	--	Local bl:Ball -- not needed
+	for bl in balllist:eachin() do --  For bl=EachIn balllist
+		bl:draw(x_off, y_off) --  bl.Draw(x_off, y_off)
+	end --  Next
+end --EndFunction
+
 --Function UpdateBalls()
 --  If ballcount=0
 --    BallList.AddLast(Ball.Create(Width/2,Height/2))
