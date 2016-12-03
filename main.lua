@@ -57,7 +57,7 @@ do Ball = createclass()
 	Ball.dx, Ball.dy, Ball.spd, Ball.rot = 0, 0, 0, 0
 	-- Ball.visual = 0 -- unused variable in original code
 	
-	function Ball:Update()
+	function Ball:update()
 		self.x = self.x + (self.dx * self.spd)
 		self.y = self.y + (self.dy * self.spd)
 		if self.x < 34 or self.x > 606 then
@@ -379,7 +379,7 @@ end --EndFunction
 
 function updateTiles() --Function UpdateTiles()
 	--	Local tl:Tile -- not needed
-	for tl in tilelist:eachin() --	For tl=EachIn tilelist
+	for tl in tilelist:eachin() do --	For tl=EachIn tilelist
 		tl:update() --		tl.Update()
 	end --	Next
 end --EndFunction
