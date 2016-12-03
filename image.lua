@@ -148,7 +148,7 @@ function tileImage(image, x, y, frame)
 	y = y or 0
 	frame = frame or 0
 	
-	assert(false, "not implemented")
+	--assert(false, "not implemented")
 	--TODO: this
 end
 
