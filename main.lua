@@ -207,8 +207,8 @@ function love.load()
 	
 	-- Media
 	back = {} --Global back:TImage[2]
-	back[0] = loadImage("media/back1.png") --back[0] = LoadImage("media\back1.png")
-	back[1] = loadImage("media/back2.png") --back[1] = LoadImage("media\back2.png")
+	back[1] = loadImage("media/back1.png") --back[0] = LoadImage("media\back1.png")
+	back[2] = loadImage("media/back2.png") --back[1] = LoadImage("media\back2.png")
 	pipes_img = loadAnimImage("media/pipes.png", 32, 32, 0, 4) --Pipes_img=LoadAnimImage("media\pipes.png",32,32,0,4)
 	tiles_img = loadAnimImage("media/tiles.png", 32, 20, 0, 5) --Tiles_img=LoadAnimImage("media\tiles.png",32,20,0,5)
 	paddle = loadImage("media/paddle.png") --paddle = LoadImage("media\paddle.png")
@@ -270,71 +270,72 @@ end
 
 
 
---
---
---Function DrawLevel()
---  Local w,aa#
---  TileImage back[1],0,gTime/20
---  SetBlend ALPHABLEND
---  DrawImage logo_img,width/2,height/2
---  aa#=0.5+(0.5*Cos(gtime/50))
---  SetBlend AlphaBLEND
---  SetAlpha aa
---  TileImage back[0],0,gTime/10
---
---  If ShadowOn
---    SetColor 0,0,0
---    SetBlend AlphaBLEND
---    SetAlpha 0.5
---    DrawPipes ShadowSize+16,ShadowSize+16
---
---    DrawTiles ShadowSize+16,ShadowSize+10
---    DrawPlayer ShadowSize,ShadowSize
---    DrawBalls ShadowSize,ShadowSize
---  EndIf
---
---  SetColor 255,255,255
---  SetBlend MASKBLEND
---  SetAlpha 1
---  DrawPipes()
---  DrawTiles()
---  DrawPlayer()
---  DrawBalls()
---EndFunction
---
---Function ResetGame()
---  TileList = New TList
---  BallList = New TList
---  Local x,y
---  For y=0 Until 5
---    For x=0 Until 18
---        Tilelist.AddLast(Tile.Create(38+x*32,(y*24)+66,4-Y))
---    Next
---  Next
---
---  BallList.AddLast(Ball.Create())
---EndFunction
---
---Function DrawPipes(x=16,y=16)
---  Local tmp
---
---  'top
---  For tmp=0 Until 18
---    DrawImage Pipes_img,x+32+(tmp*32),y+16,3
---  Next
---
---  'sides
---  For tmp=0 Until 14
---    DrawImage Pipes_img,x,y+48+(tmp*32),2
---    DrawImage Pipes_img,x+Width-32,y+48+(tmp*32),2
---  Next
---
---  'Corners
---  DrawImage Pipes_img,x,y+16 ,0
---  DrawImage Pipes_img,x+Width-32,y+16,1
---
---EndFunction
---
+function drawLevel() --Function DrawLevel()
+	local w, aa = 0, 0 --  Local w,aa#
+	tileImage(back[2], 0, gtime / 20) --  TileImage back[1],0,gTime/20
+	setBlend("ALPHABLEND") --  SetBlend ALPHABLEND
+	drawImage(logo_img, width / 2, height / 2) --  DrawImage logo_img,width/2,height/2
+	aa = 0.5 + (0.5 * math.cos(gtime / 50)) --  aa#=0.5+(0.5*Cos(gtime/50))
+	setBlend("ALPHABLEND") --  SetBlend AlphaBLEND
+	setAlpha(aa) --  SetAlpha aa
+	tileImage(back[1], 0, gtime / 10) --  TileImage back[0],0,gTime/10
+	
+	if SHADOW_ON then --  If ShadowOn
+		setColor(0, 0, 0) --    SetColor 0,0,0
+		setBlend("ALPHABLEND") --    SetBlend AlphaBLEND
+		setAlpha(0.5) --    SetAlpha 0.5
+		drawPipes(SHADOW_SIZE + 16, SHADOW_SIZE + 16) --    DrawPipes ShadowSize+16,ShadowSize+16
+		
+		drawTiles(SHADOW_SIZE + 16, SHADOW_SIZE + 10) --    DrawTiles ShadowSize+16,ShadowSize+10
+		drawPlayer(SHADOW_SIZE, SHADOW_SIZE) --    DrawPlayer ShadowSize,ShadowSize
+		drawBalls(SHADOW_SIZE, SHADOW_SIZE) --    DrawBalls ShadowSize,ShadowSize
+	end --  EndIf
+	
+	setColor(255, 255, 255) --  SetColor 255,255,255
+	setBlend("MASKBLEND") --  SetBlend MASKBLEND
+	setAlpha(1) --  SetAlpha 1
+	drawPipes() --  DrawPipes()
+	drawTiles() --  DrawTiles()
+	drawPlayer() --  DrawPlayer()
+	drawBalls() --  DrawBalls()
+end --EndFunction
+
+
+function resetGame() --Function ResetGame()
+	tilelist = TList() --  TileList = New TList
+	balllist = TList() --  BallList = New TList
+	-- local x, y --  Local x,y -- not needed
+	for y = 0, 4 do --  For y=0 Until 5
+		for x = 0, 17 do --    For x=0 Until 18
+			tilelist:addLast(Tile.create(38 + x * 32, (y * 24) + 66, 4 - y)) --        Tilelist.AddLast(Tile.Create(38+x*32,(y*24)+66,4-Y))
+		end --    Next
+	end--  Next
+	
+	balllist:addLast(Ball.create()) --  BallList.AddLast(Ball.Create())
+end --EndFunction
+
+
+function drawPipes(x, y) --Function DrawPipes(x=16,y=16)
+	--  Local tmp -- not needed
+	
+	-- top
+	for tmp = 0, 17 do --  For tmp=0 Until 18
+		drawImage(pipes_img, x + 32 + (tmp * 32), y + 16, 3) --    DrawImage Pipes_img,x+32+(tmp*32),y+16,3
+	end --  Next
+	
+	-- sides
+	for tmp = 0, 13 do --  For tmp=0 Until 14
+		drawImage(pipes_img, x, y + 48 + (tmp * 32), 2) --    DrawImage Pipes_img,x,y+48+(tmp*32),2
+		drawImage(pipes_img, x + WIDTH - 32, y + 48 + (tmp * 32), 2) --    DrawImage Pipes_img,x+Width-32,y+48+(tmp*32),2
+	end --  Next
+	
+	-- Corners
+	drawImage(pipes_img, x, y + 16, 0) --  DrawImage Pipes_img,x,y+16 ,0
+	drawImage(pipes_img, x + WIDTH - 32, y + 16, 1) --  DrawImage Pipes_img,x+Width-32,y+16,1
+	
+end --EndFunction
+
+
 --Function DrawTiles(x_off=10, y_off=10)
 --	Local tl:Tile
 --	Local any=0
