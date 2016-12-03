@@ -364,56 +364,33 @@ function drawBalls(x_off, y_off) --Function DrawBalls(x_off=0, y_off=0)
 	end --  Next
 end --EndFunction
 
---Function UpdateBalls()
---  If ballcount=0
---    BallList.AddLast(Ball.Create(Width/2,Height/2))
---  Else
---  	Local bl:Ball
---  	For bl = EachIn BallList
---  		bl.Update()
---  	Next
---  EndIf
---EndFunction
---
---Function UpdateTiles()
---	Local tl:Tile
---	For tl=EachIn tilelist
---		tl.Update()
---	Next
---EndFunction
---
---Function DrawPlayer(x_off=0,y_off=0)
---  DrawImage paddle, playerx+x_off, playery+y_off
---End Function
+
+function updateBalls() --Function UpdateBalls()
+	if ballcount == 0 then --  If ballcount=0
+		balllist:addLast(Ball.create(WIDTH / 2, HEIGHT / 2)) --    BallList.AddLast(Ball.Create(Width/2,Height/2))
+	else --  Else
+		--  	Local bl:Ball -- not needed
+		for bl in balllist:eachin() do --  	For bl = EachIn BallList
+			bl:update() --  		bl.Update()
+		end --  	Next
+	end --  EndIf
+end --EndFunction
 
 
+function updateTiles() --Function UpdateTiles()
+	--	Local tl:Tile -- not needed
+	for tl in tilelist:eachin() --	For tl=EachIn tilelist
+		tl:update() --		tl.Update()
+	end --	Next
+end --EndFunction
+
+
+function drawPlayer(x_off, y_off) --Function DrawPlayer(x_off=0,y_off=0)
+	x_off = x_off or 0
+	y_off = y_off or 0
+	
+	drawImage(paddle, playerX + x_off, playerY + y_off) --  DrawImage paddle, playerx+x_off, playery+y_off
+end --End Function
 
 --]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
