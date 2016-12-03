@@ -30,7 +30,7 @@ WIDTH, HEIGHT = nil, nil -- we set these in love.load()
 SHADOW_ON = true
 SHADOW_SIZE = 10
 
-gtime = nil
+gtime = 0
 back = nil -- added because strict.lua complains otherwise
 pipes_img = nil
 tiles_img = nil
@@ -125,15 +125,15 @@ do Tile = createclass()
 		end
 		
 		if self.typ == 0 then
-			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 0)
-		elseif self.typ == 1 then
 			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 1)
-		elseif self.typ == 2 then
+		elseif self.typ == 1 then
 			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 2)
-		elseif self.typ == 3 then
+		elseif self.typ == 2 then
 			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 3)
-		elseif self.typ == 4 then
+		elseif self.typ == 3 then
 			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 4)
+		elseif self.typ == 4 then
+			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 5)
 		end
 		
 		setScale(1, 1)
@@ -176,9 +176,15 @@ do Tile = createclass()
 			self.y = self.y + 4--      y:+4
 			self.rot = self.rot + 5--      rot:+5
 			self.size = self.size - .005--      size:-.005
+			
+			--[[ BUG: this tries to remove nonexistant ball from the balllist...
+			--        probably a bug in the original source.
+			--        also, strict.lua says variable b is not defined here (which is correct)
+			
 			if self.y > HEIGHT then--      If y>HEIGHT
 				balllist:remove(b)--        BallList.Remove(b)
 			end--      EndIf
+			--]]
 		end--    EndIf
 	end--  EndMethod
 	
@@ -274,7 +280,7 @@ function drawLevel() --Function DrawLevel()
 	local w, aa = 0, 0 --  Local w,aa#
 	tileImage(back[2], 0, gtime / 20) --  TileImage back[1],0,gTime/20
 	setBlend("ALPHABLEND") --  SetBlend ALPHABLEND
-	drawImage(logo_img, width / 2, height / 2) --  DrawImage logo_img,width/2,height/2
+	drawImage(logo_img, WIDTH / 2, HEIGHT / 2) --  DrawImage logo_img,width/2,height/2
 	aa = 0.5 + (0.5 * math.cos(gtime / 50)) --  aa#=0.5+(0.5*Cos(gtime/50))
 	setBlend("ALPHABLEND") --  SetBlend AlphaBLEND
 	setAlpha(aa) --  SetAlpha aa
@@ -322,18 +328,18 @@ function drawPipes(x, y) --Function DrawPipes(x=16,y=16)
 	
 	-- top
 	for tmp = 0, 17 do --  For tmp=0 Until 18
-		drawImage(pipes_img, x + 32 + (tmp * 32), y + 16, 3) --    DrawImage Pipes_img,x+32+(tmp*32),y+16,3
+		drawImage(pipes_img, x + 32 + (tmp * 32), y + 16, 4) --    DrawImage Pipes_img,x+32+(tmp*32),y+16,3
 	end --  Next
 	
 	-- sides
 	for tmp = 0, 13 do --  For tmp=0 Until 14
-		drawImage(pipes_img, x, y + 48 + (tmp * 32), 2) --    DrawImage Pipes_img,x,y+48+(tmp*32),2
-		drawImage(pipes_img, x + WIDTH - 32, y + 48 + (tmp * 32), 2) --    DrawImage Pipes_img,x+Width-32,y+48+(tmp*32),2
+		drawImage(pipes_img, x, y + 48 + (tmp * 32), 3) --    DrawImage Pipes_img,x,y+48+(tmp*32),2
+		drawImage(pipes_img, x + WIDTH - 32, y + 48 + (tmp * 32), 3) --    DrawImage Pipes_img,x+Width-32,y+48+(tmp*32),2
 	end --  Next
 	
 	-- Corners
-	drawImage(pipes_img, x, y + 16, 0) --  DrawImage Pipes_img,x,y+16 ,0
-	drawImage(pipes_img, x + WIDTH - 32, y + 16, 1) --  DrawImage Pipes_img,x+Width-32,y+16,1
+	drawImage(pipes_img, x, y + 16, 1) --  DrawImage Pipes_img,x,y+16 ,0
+	drawImage(pipes_img, x + WIDTH - 32, y + 16, 2) --  DrawImage Pipes_img,x+Width-32,y+16,1
 	
 end --EndFunction
 
