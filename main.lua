@@ -2,8 +2,8 @@
 -- a port of the BlitzMax Breakout sample game to LÖVE 2D
 
 -- FIXED: drawImage frame indices are wrong!
+-- FIXED: collision with paddle doesn't work!
 
--- TODO: collision with paddle doesn't work!
 -- TODO: animation speed of the tiles is way too high!
 -- TODO: ball has no alpha transparency (no image seems to have any alpha transparency...)
 -- TODO: score bar is transparent, should be opaque
@@ -73,7 +73,7 @@ do Ball = createclass()
 		else
 			if self.dy > 0 then
 				if self.y > playerY - 8 then
-					if self.x > playerX-32 and self.x < playerX-32 then
+					if self.x > playerX-32 and self.x < playerX+32 then
 						self.dy = self.dy*-1
 					end
 				end
