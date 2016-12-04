@@ -1,7 +1,8 @@
 -- blitzmax_breakout
 -- a port of the BlitzMax Breakout sample game to LÖVE 2D
 
--- TODO: drawImage frame indices are wrong!
+-- FIXED: drawImage frame indices are wrong!
+
 -- TODO: collision with paddle doesn't work!
 -- TODO: animation speed of the tiles is way too high!
 -- TODO: ball has no alpha transparency (no image seems to have any alpha transparency...)
@@ -215,8 +216,8 @@ function love.load()
 	back = {} --Global back:TImage[2]
 	back[1] = loadImage("media/back1.png") --back[0] = LoadImage("media\back1.png")
 	back[2] = loadImage("media/back2.png") --back[1] = LoadImage("media\back2.png")
-	pipes_img = loadAnimImage("media/pipes.png", 32, 32, 0, 4) --Pipes_img=LoadAnimImage("media\pipes.png",32,32,0,4)
-	tiles_img = loadAnimImage("media/tiles.png", 32, 20, 0, 5) --Tiles_img=LoadAnimImage("media\tiles.png",32,20,0,5)
+	pipes_img = loadAnimImage("media/pipes.png", 32, 32, 1, 4) --Pipes_img=LoadAnimImage("media\pipes.png",32,32,0,4)
+	tiles_img = loadAnimImage("media/tiles.png", 32, 20, 1, 5) --Tiles_img=LoadAnimImage("media\tiles.png",32,20,0,5)
 	paddle = loadImage("media/paddle.png") --paddle = LoadImage("media\paddle.png")
 	ballvis = loadImage("media/ball.png") --ballvis = LoadImage("media\ball.png")
 	logo_img = loadImage("media/B-Max.png")--logo_img=LoadImage("media\B-Max.png")
