@@ -12,6 +12,10 @@ local _autoMidHandle = false
 local _rotation = 0
 local _scale_x, _scale_y = 1, 1
 
+-- stores the quads for the images used with tileImage
+--TODO: figure out the formula for the quad sizes
+local _tileImage_quads = {}
+
 
 function setRotation(r)
 	_rotation = math.rad(r)
@@ -143,10 +147,13 @@ function drawImage(image, x, y, frame)
 end
 
 
+-- NOTE: frame gets ignored, it will always draw the whole image!
 function tileImage(image, x, y, frame)
 	x = x or 0
 	y = y or 0
 	frame = frame or 0
+	
+	
 	
 	--assert(false, "not implemented")
 	--TODO: this
