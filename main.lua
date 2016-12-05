@@ -4,11 +4,11 @@
 -- FIXED: drawImage frame indices are wrong!
 -- FIXED: collision with paddle doesn't work!
 -- FIXED: ball has no alpha transparency (no image seems to have any alpha transparency...)
+-- DONE: implement function tileImage in image.lua
 
--- TODO: animation speed of the tiles is way too high!
+-- TODO: animation speed of the tiles and background is way too high!
 -- TODO: score bar is transparent, should be opaque
 
--- TODO: implement function tileImage in image.lua
 
 
 -- NOTE: tiles are never removed from TileList, even in the original code!
