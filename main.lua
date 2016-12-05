@@ -272,6 +272,7 @@ function love.draw()
 	setColor(255, 255, 255) -- SetColor 255,255,255
 	love.graphics.print("Score:" .. tostring(score) .. " " .. tostring(ballcount), 2, 2) -- DrawText "Score:"+Score+" "+ballcount,2,2
 	
+	love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 400, 5)
 	-- Flip
 end
 
