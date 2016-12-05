@@ -6,6 +6,7 @@ tiles_img = nil
 full_img  = nil
 
 rotation = 0
+scroll = 0
 
 function love.load()
 	
@@ -29,11 +30,14 @@ function love.update(dt)
 	--rotation = rotation % 360
 	rotation = (rotation + dt*60) % 360
 	setRotation(rotation)
+	scroll = scroll + dt*60
 	--print(1*60*dt)
 end
 
 
 function love.draw()
+	tileImage(full_img, -scroll, scroll * .25)
+	
 	love.graphics.print("rotation: " .. tostring(rotation), 10, 10)
 	
 	--dbg()

@@ -20,7 +20,7 @@ require "strict" -- temporary
 --[[
 require "_tests.test_image"
 --]]
----[[
+---[=[
 require "image"
 require "random"
 createclass = require "createclass"
@@ -399,5 +399,5 @@ function drawPlayer(x_off, y_off) --Function DrawPlayer(x_off=0,y_off=0)
 	drawImage(paddle, playerX + x_off, playerY + y_off) --  DrawImage paddle, playerx+x_off, playery+y_off
 end --End Function
 
---]]
+--]=]
 

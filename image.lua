@@ -149,11 +149,33 @@ end
 
 -- NOTE: frame gets ignored, it will always draw the whole image!
 function tileImage(image, x, y, frame)
+	assert(image, "image must not be nil!")
 	x = x or 0
 	y = y or 0
 	frame = frame or 0
 	
+	if not _tileImage_quads[image] then
+		print("tileImage: unknown image, creating quad.", image)
+		local calcSize = function(ss, is) -- ss = screenSize, is = imageSize
+			local r = is
+			while r < ss+is do r = r + is end
+			return r
+		end
+		
+		local iw, ih = image.img:getDimensions()
+		local sw, sh = love.graphics.getDimensions()
+		local q = love.graphics.newQuad(0, 0, calcSize(sw, iw), calcSize(sh, ih), iw, ih)
+		assert(q)
+		
+		image.img:setWrap("repeat", "repeat")
+		_tileImage_quads[image] = {w = iw, h = ih, q = q} -- imageWidth, imageHeight, quad
+	end
 	
+	-- draw
+	local t = _tileImage_quads[image]
+	x, y = x - image.handle_x, y - image.handle_y
+	--love.graphics.draw(image.img, t.q, x % t.w - image.handle_x, y % t.h - image.handle_y)
+	love.graphics.draw(image.img, t.q, x % t.w - t.w, y % t.h - t.h)
 	
 	--assert(false, "not implemented")
 	--TODO: this
