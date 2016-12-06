@@ -13,7 +13,8 @@
 
 -- FIXED: score bar is transparent, should be opaque
 
-
+-- TODO: implement resolution dependent scaling for graphics and input!
+--       (for better android compatibility) (maybe make the window resizable)
 
 -- NOTE: tiles are never removed from TileList, even in the original code!
 
