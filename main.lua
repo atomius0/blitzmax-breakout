@@ -19,7 +19,7 @@
 -- NOTE: tiles are never removed from TileList, even in the original code!
 
 
-require "strict" -- temporary
+--require "strict" -- temporary
 --require('mobdebug').start()
 
 --[[
@@ -217,7 +217,8 @@ end --EndType
 
 function love.load()
 	-- width and height are set in conf.lua
-	WIDTH, HEIGHT = love.graphics.getDimensions() --Graphics WIDTH,HEIGHT,DEPTH
+	--WIDTH, HEIGHT = love.graphics.getDimensions() --Graphics WIDTH,HEIGHT,DEPTH
+	WIDTH, HEIGHT = 640, 480 -- android test
 	
 	autoMidHandle(true) --AutoMidHandle True
 	
