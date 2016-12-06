@@ -11,7 +11,7 @@
 --        BlitzMax' Sin and Cos expect them in degrees.
 --        Fixed by writing wrapper functions for 'sin' and 'cos'
 
--- TODO: score bar is transparent, should be opaque
+-- FIXED: score bar is transparent, should be opaque
 
 
 
@@ -59,6 +59,7 @@ maxf = math.max
 
 function sin(n) return math.sin(math.rad(n)) end
 function cos(n) return math.cos(math.rad(n)) end
+
 
 do Ball = createclass()
 	Ball.x, Ball.y = 0, 0
@@ -265,7 +266,8 @@ function love.draw()
 	-- Draw Level
 	drawLevel()-- DrawLevel()
 
-	setAlpha(.75)-- SetAlpha .75
+	--setAlpha(.75)-- SetAlpha .75
+	setAlpha(1) -- score bar should not be transparent
 	setColor(0, 0, 255)-- SetColor 0,0,255
 	drawRect(0, 0, WIDTH, 20)-- DrawRect 0,0,Width,20
 	
