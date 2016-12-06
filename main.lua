@@ -6,7 +6,11 @@
 -- FIXED: ball has no alpha transparency (no image seems to have any alpha transparency...)
 -- DONE: implement function tileImage in image.lua
 
--- TODO: animation speed of the tiles and background is way too high!
+-- FIXED: animation speed of the tiles and background is way too high!
+-- -----> Lua's math.sin and math.cos functions expect the argument to be given in radians,
+--        BlitzMax' Sin and Cos expect them in degrees.
+--        Fixed by writing wrapper functions for 'sin' and 'cos'
+
 -- TODO: score bar is transparent, should be opaque
 
 
@@ -52,6 +56,9 @@ minf = math.min
 
 maxf = math.max
 -- Public
+
+function sin(n) return math.sin(math.rad(n)) end
+function cos(n) return math.cos(math.rad(n)) end
 
 do Ball = createclass()
 	Ball.x, Ball.y = 0, 0
@@ -118,7 +125,7 @@ do Tile = createclass()
 				self.size = self.size * 0.9
 			else
 				self.size = 1
-				setScale(0.95 + (0.05 * math.cos(gtime)), 0.95 + (0.05 * math.sin(gtime)))
+				setScale(0.95 + (0.05 * cos(gtime)), 0.95 + (0.05 * sin(gtime)))
 			end
 		elseif self.state == 1 then
 			setRotation(self.rot)
@@ -126,15 +133,15 @@ do Tile = createclass()
 		end
 		
 		if self.typ == 0 then
-			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 1)
+			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * sin(gtime)), 1)
 		elseif self.typ == 1 then
-			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 2)
+			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * sin(gtime)), 2)
 		elseif self.typ == 2 then
-			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 3)
+			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * sin(gtime)), 3)
 		elseif self.typ == 3 then
-			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 4)
+			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * sin(gtime)), 4)
 		elseif self.typ == 4 then
-			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * math.sin(gtime)), 5)
+			drawImage(tiles_img, self.x + offx, self.y + offy + (2 * sin(gtime)), 5)
 		end
 		
 		setScale(1, 1)
@@ -272,7 +279,8 @@ function love.draw()
 	setColor(255, 255, 255) -- SetColor 255,255,255
 	love.graphics.print("Score:" .. tostring(score) .. " " .. tostring(ballcount), 2, 2) -- DrawText "Score:"+Score+" "+ballcount,2,2
 	
-	love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 400, 5)
+	--love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 400, 5)
+	
 	-- Flip
 end
 
@@ -283,7 +291,7 @@ function drawLevel() --Function DrawLevel()
 	tileImage(back[2], 0, gtime / 20) --  TileImage back[1],0,gTime/20
 	setBlend("ALPHABLEND") --  SetBlend ALPHABLEND
 	drawImage(logo_img, WIDTH / 2, HEIGHT / 2) --  DrawImage logo_img,width/2,height/2
-	aa = 0.5 + (0.5 * math.cos(gtime / 50)) --  aa#=0.5+(0.5*Cos(gtime/50))
+	aa = 0.5 + (0.5 * cos(gtime / 50)) --  aa#=0.5+(0.5*Cos(gtime/50))
 	setBlend("ALPHABLEND") --  SetBlend AlphaBLEND
 	setAlpha(aa) --  SetAlpha aa
 	tileImage(back[1], 0, gtime / 10) --  TileImage back[0],0,gTime/10
