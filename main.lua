@@ -223,6 +223,7 @@ function love.load()
 	-- internal resolution is now hardcoded at the beginning of this file
 	--WIDTH, HEIGHT = love.graphics.getDimensions() --Graphics WIDTH,HEIGHT,DEPTH
 	winres.w, winres.h = WIDTH, HEIGHT
+	love.resize(love.graphics.getDimensions())
 	
 	autoMidHandle(true) --AutoMidHandle True
 	
