@@ -243,8 +243,8 @@ function love.load()
 	score = 0 --Score=0
 	
 	resetGame() --ResetGame()
-	
-	love.mouse.setVisible(false) --HideMouse
+	--TODO: re-hide mouse pointer
+	--love.mouse.setVisible(false) --HideMouse
 end
 
 
@@ -257,7 +257,9 @@ end
 
 function love.update(dt)
 	-- Update Players Position
-	playerX = minf(574,maxf(64,love.mouse.getX())) -- playerx = minf(574,maxf(64,MouseX()))
+	--playerX = minf(574,maxf(64,love.mouse.getX())) -- playerx = minf(574,maxf(64,MouseX()))
+	-- TODO: finish mouse scaling! (write an offset mouse function!)
+	playerX = minf(574,maxf(64,love.mouse.getX())) -- added mouse scaling
 	-- Update Balls
 	updateBalls() -- UpdateBalls()
 	-- Update Tiles
