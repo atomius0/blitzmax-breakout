@@ -107,6 +107,8 @@ function _loadImage(is_anim, url, cell_w, cell_h, first, count)
 	t.img = love.graphics.newImage(url)
 	if not t.img then return end
 	
+	t.img:setFilter("nearest", "nearest")
+	
 	if is_anim then
 		t.quads = generateQuads(cell_w, cell_h, first, count, t.img:getDimensions())
 	else
