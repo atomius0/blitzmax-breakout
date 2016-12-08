@@ -13,13 +13,13 @@
 
 -- FIXED: score bar is transparent, should be opaque
 
--- TODO: implement resolution dependent scaling for graphics and input!
+-- DONE: implement resolution dependent scaling for graphics and input!
 --       (for better android compatibility) (maybe make the window resizable)
 
 -- NOTE: tiles are never removed from TileList, even in the original code!
 
 
-require "strict" -- temporary
+--require "strict" -- temporary
 --require('mobdebug').start()
 
 --[[
@@ -243,8 +243,8 @@ function love.load()
 	score = 0 --Score=0
 	
 	resetGame() --ResetGame()
-	--TODO: re-hide mouse pointer
-	--love.mouse.setVisible(false) --HideMouse
+	
+	love.mouse.setVisible(false) --HideMouse
 end
 
 
