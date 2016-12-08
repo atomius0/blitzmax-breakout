@@ -290,6 +290,7 @@ function love.draw()
 	--love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 400, 5)
 	
 	-- Flip
+	drawScreenBorder()
 end
 
 
@@ -321,7 +322,19 @@ end
 -- draws a black border around the screen so that stuff outside of the regular screen is hidden
 -- (for when the window's aspect ratio does not match the game's aspect ratio)
 function drawScreenBorder()
-	--love.graphics.rectangle()
+	love.graphics.origin()
+	love.graphics.translate(winres.offs_x, winres.offs_y)
+	
+	love.graphics.setColor(255, 0, 255) --TODO: test color, change to black
+	-- top
+	--love.graphics.rectangle("fill", -winres.offs_x, -winres.offs_y, winres.w, winres.offs_y)
+	-- bottom
+	--love.graphics.rectangle("fill", -winres.offs_x, HEIGHT*winres.scale, winres.w, winres.offs_y)
+	-- left
+	love.graphics.rectangle("fill", -winres.offs_x, -winres.offs_y, winres.offs_x, winres.h)
+	-- right
+	--TODO: right
+	love.graphics.setColor(255, 255, 255)
 end
 
 
