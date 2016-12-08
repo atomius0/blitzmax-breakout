@@ -32,7 +32,7 @@ createclass = require "createclass"
 TList       = require "linkedlist"
 
 
-WIDTH, HEIGHT = nil, nil -- we set these in love.load()
+WIDTH, HEIGHT = 640, 480
 SHADOW_ON = true
 SHADOW_SIZE = 10
 
@@ -220,7 +220,8 @@ end --EndType
 
 function love.load()
 	-- width and height are set in conf.lua
-	WIDTH, HEIGHT = love.graphics.getDimensions() --Graphics WIDTH,HEIGHT,DEPTH
+	-- internal resolution is now hardcoded at the beginning of this file
+	--WIDTH, HEIGHT = love.graphics.getDimensions() --Graphics WIDTH,HEIGHT,DEPTH
 	winres.w, winres.h = WIDTH, HEIGHT
 	
 	autoMidHandle(true) --AutoMidHandle True
