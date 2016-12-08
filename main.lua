@@ -258,8 +258,7 @@ end
 function love.update(dt)
 	-- Update Players Position
 	--playerX = minf(574,maxf(64,love.mouse.getX())) -- playerx = minf(574,maxf(64,MouseX()))
-	-- TODO: finish mouse scaling! (write an offset mouse function!)
-	playerX = minf(574,maxf(64,love.mouse.getX())) -- added mouse scaling
+	playerX = minf(574,maxf(64,mouseGetXWithOffset())) -- added mouse scaling
 	-- Update Balls
 	updateBalls() -- UpdateBalls()
 	-- Update Tiles
@@ -327,16 +326,25 @@ function drawScreenBorder()
 	love.graphics.origin()
 	love.graphics.translate(winres.offs_x, winres.offs_y)
 	
-	love.graphics.setColor(255, 0, 255) --TODO: test color, change to black
+	--love.graphics.setColor(255, 0, 255) -- test color
+	love.graphics.setColor(0, 0, 0) -- black screen border
+	
 	-- top
-	--love.graphics.rectangle("fill", -winres.offs_x, -winres.offs_y, winres.w, winres.offs_y)
+	love.graphics.rectangle("fill", -winres.offs_x, -winres.offs_y, winres.w, winres.offs_y)
 	-- bottom
-	--love.graphics.rectangle("fill", -winres.offs_x, HEIGHT*winres.scale, winres.w, winres.offs_y)
+	love.graphics.rectangle("fill", -winres.offs_x, HEIGHT*winres.scale, winres.w, winres.offs_y)
 	-- left
 	love.graphics.rectangle("fill", -winres.offs_x, -winres.offs_y, winres.offs_x, winres.h)
 	-- right
-	--TODO: right
+	love.graphics.rectangle("fill", WIDTH*winres.scale, -winres.offs_y, winres.offs_x, winres.h)
+	
 	love.graphics.setColor(255, 255, 255)
+end
+
+
+-- returns mouse X position scaled and offset according to screen scaling
+function mouseGetXWithOffset()
+	return (love.mouse.getX() - winres.offs_x) / winres.scale 
 end
 
 
