@@ -157,7 +157,7 @@ function tileImage(image, x, y, frame)
 	frame = frame or 0
 	
 	if not _tileImage_quads[image] then
-		print("tileImage: unknown image, creating quad.", image)
+		--print("tileImage: unknown image, creating quad.", image)
 		local calcSize = function(ss, is) -- ss = screenSize, is = imageSize
 			local r = is
 			while r < ss+is do r = r + is end
