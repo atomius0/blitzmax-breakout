@@ -61,6 +61,9 @@ maxf = math.max
 function sin(n) return math.sin(math.rad(n)) end
 function cos(n) return math.cos(math.rad(n)) end
 
+-- current display/window resolution, for resolution scaling
+winres = {w = 0, h = 0, scale = 1}
+
 
 do Ball = createclass()
 	Ball.x, Ball.y = 0, 0
@@ -218,6 +221,7 @@ end --EndType
 function love.load()
 	-- width and height are set in conf.lua
 	WIDTH, HEIGHT = love.graphics.getDimensions() --Graphics WIDTH,HEIGHT,DEPTH
+	winres.w, winres.h = WIDTH, HEIGHT
 	
 	autoMidHandle(true) --AutoMidHandle True
 	
@@ -264,6 +268,7 @@ end
 
 
 function love.draw()
+	setScale()
 	-- Draw Level
 	drawLevel()-- DrawLevel()
 
@@ -285,6 +290,25 @@ function love.draw()
 	--love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 400, 5)
 	
 	-- Flip
+end
+
+
+function love.resize(w, h)
+	-- use one scale value only, to keep aspect ratio
+	
+	local scale = math.min(w / WIDTH, h / HEIGHT)
+	
+	scale = math.floor(scale) -- integer scale
+	
+	winres.w = w
+	winres.h = h
+	winres.scale = scale
+end
+
+
+function setScale()
+	love.graphics.origin() -- why is this needed? love.run is supposed to call this before love.draw
+	love.graphics.scale(winres.scale, winres.scale)
 end
 
 
