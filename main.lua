@@ -18,6 +18,8 @@
 
 -- NOTE: tiles are never removed from TileList, even in the original code!
 
+-- FIXED: tiles don't scale anymore! (there were two "setScale" functions...
+-- -----> renamed the new one to setScreenScale.
 
 --require "strict" -- temporary
 --require('mobdebug').start()
@@ -271,7 +273,7 @@ end
 
 
 function love.draw()
-	setScale()
+	setScreenScale()
 	-- Draw Level
 	drawLevel()-- DrawLevel()
 
@@ -313,7 +315,7 @@ function love.resize(w, h)
 end
 
 
-function setScale()
+function setScreenScale()
 	love.graphics.origin() -- why is this needed? love.run is supposed to call this before love.draw
 	
 	-- we have to translate first, then scale. otherwise the translate-offsets will be scaled, too!
