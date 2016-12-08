@@ -62,7 +62,7 @@ function sin(n) return math.sin(math.rad(n)) end
 function cos(n) return math.cos(math.rad(n)) end
 
 -- current display/window resolution, for resolution scaling
-winres = {w = 0, h = 0, scale = 1}
+winres = {w = 0, h = 0, scale = 1, offs_x = 0, offs_y = 0}
 
 
 do Ball = createclass()
@@ -294,21 +294,34 @@ end
 
 
 function love.resize(w, h)
-	-- use one scale value only, to keep aspect ratio
-	
 	local scale = math.min(w / WIDTH, h / HEIGHT)
 	
-	scale = math.floor(scale) -- integer scale
+	-- integer scale
+	--scale = math.floor(scale)
 	
 	winres.w = w
 	winres.h = h
+	
 	winres.scale = scale
+	
+	winres.offs_x = w/2 - WIDTH/2 * scale
+	winres.offs_y = h/2 - HEIGHT/2 * scale
 end
 
 
 function setScale()
 	love.graphics.origin() -- why is this needed? love.run is supposed to call this before love.draw
+	
+	-- we have to translate first, then scale. otherwise the translate-offsets will be scaled, too!
+	love.graphics.translate(winres.offs_x, winres.offs_y)
 	love.graphics.scale(winres.scale, winres.scale)
+end
+
+
+-- draws a black border around the screen so that stuff outside of the regular screen is hidden
+-- (for when the window's aspect ratio does not match the game's aspect ratio)
+function drawScreenBorder()
+	--love.graphics.rectangle()
 end
 
 
