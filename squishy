@@ -1,0 +1,9 @@
+Output "out/main.lua"
+Main "main.lua"
+Module "conf"
+Module "createclass"
+Module "image"
+Module "linkedlist"
+Module "random"
+
+--Option "uglify"
