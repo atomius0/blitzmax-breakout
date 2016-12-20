@@ -1,6 +1,6 @@
 Output "_tmp/main_squished.lua"
 Main "main.lua"
-Module "conf"
+--Module "conf"
 Module "createclass"
 Module "image"
 Module "linkedlist"

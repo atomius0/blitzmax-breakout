@@ -6,7 +6,6 @@ VERSION = 1.2.0
 LOVE_NAME = bmx-breakout-love2d_v$(VERSION)-squished.love
 
 SOURCE_FILES = main.lua \
-conf.lua \
 createclass.lua \
 image.lua \
 linkedlist.lua \
@@ -21,9 +20,9 @@ media/pipes.png \
 media/tiles.png
 
 
-release/$(LOVE_NAME): _tmp/main.lua $(ASSET_FILES)
+release/$(LOVE_NAME): _tmp/main.lua conf.lua $(ASSET_FILES)
 	if not exist release mkdir release
-	7z a -mx9 -tzip -- $@ ./_tmp/main.lua $(ASSET_FILES)
+	7z a -mx9 -tzip -- $@ ./_tmp/main.lua conf.lua $(ASSET_FILES)
 
 
 _tmp/main.lua: $(SOURCE_FILES)
