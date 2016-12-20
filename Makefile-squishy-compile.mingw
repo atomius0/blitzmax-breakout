@@ -5,6 +5,8 @@ VERSION = 1.2.0
 
 LOVE_NAME = bmx-breakout-love2d_v$(VERSION)-squished.love
 
+# conf.lua was removed from SOURCE_FILES, because it shouldn't be squished together with the other
+# source files. love2d only reads conf.lua if it is a separate file.
 SOURCE_FILES = main.lua \
 createclass.lua \
 image.lua \
