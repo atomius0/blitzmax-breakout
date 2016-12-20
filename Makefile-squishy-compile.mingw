@@ -1,0 +1,38 @@
+# alternative makefile, squishes and compiles sources before zipping them
+# use with: mingw32-make -f Makefile.mingw
+
+VERSION = 1.2.0
+
+LOVE_NAME = bmx-breakout-love2d_v$(VERSION)-squished.love
+
+SOURCE_FILES = main.lua \
+conf.lua \
+createclass.lua \
+image.lua \
+linkedlist.lua \
+random.lua
+
+ASSET_FILES = media/back1.png \
+media/back2.png \
+media/ball.png \
+media/B-Max.png \
+media/paddle.png \
+media/pipes.png \
+media/tiles.png
+
+
+release/$(LOVE_NAME): _tmp/main.lua $(ASSET_FILES)
+	if not exist release mkdir release
+	7z a -mx9 -tzip -- $@ ./_tmp/main.lua $(ASSET_FILES)
+
+
+_tmp/main.lua: $(SOURCE_FILES)
+	if not exist _tmp mkdir _tmp
+	squish
+	luajit -b _tmp/main_squished.lua _tmp/main.lua
+
+
+.PHONY: clean
+clean:
+	-rmdir /S/Q release
+	-rmdir /S/Q _tmp

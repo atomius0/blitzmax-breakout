@@ -1,4 +1,4 @@
-Output "out/main.lua"
+Output "_tmp/main_squished.lua"
 Main "main.lua"
 Module "conf"
 Module "createclass"
