@@ -1,6 +1,15 @@
 -- blitzmax_breakout
 -- a port of the BlitzMax Breakout sample game to LÖVE 2D
 
+-- TODO: write a makefile that builds a .love file.
+
+-- TODO: add the colorkey-transparency function from ../../tests/colorkey_transparency/
+--       and switch back to using the original image files from the blitzmax version
+--       (without added alpha channel)
+
+-- TODO: check license and maybe upload to github?
+
+
 -- FIXED: drawImage frame indices are wrong!
 -- FIXED: collision with paddle doesn't work!
 -- FIXED: ball has no alpha transparency (no image seems to have any alpha transparency...)
@@ -18,7 +27,7 @@
 
 -- NOTE: tiles are never removed from TileList, even in the original code!
 
--- FIXED: tiles don't scale anymore! (there were two "setScale" functions...
+-- FIXED: tiles don't scale anymore! (there were two "setScale" functions...)
 -- -----> renamed the new one to setScreenScale.
 
 --require "strict" -- temporary
