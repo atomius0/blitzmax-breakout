@@ -316,7 +316,9 @@ end
 
 
 function setScreenScale()
-	love.graphics.origin() -- why is this needed? love.run is supposed to call this before love.draw
+	-- the call to love.grapics.origin is not needed anymore. It was only required because of the
+	-- scaling bug that was introduced in commit c73f8a02b5 and fixed in commit 36e761a63a
+	--love.graphics.origin() -- why is this needed? love.run is supposed to call this before love.draw
 	
 	-- we have to translate first, then scale. otherwise the translate-offsets will be scaled, too!
 	love.graphics.translate(winres.offs_x, winres.offs_y)
