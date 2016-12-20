@@ -1,0 +1,30 @@
+# use with: mingw32-make -f Makefile.mingw
+
+VERSION = 1.2.0
+
+LOVE_NAME = bmx-breakout-love2d_v$(VERSION).love
+
+SOURCE_FILES = main.lua \
+conf.lua \
+createclass.lua \
+image.lua \
+linkedlist.lua \
+random.lua
+
+ASSET_FILES = media/back1.png \
+media/back2.png \
+media/ball.png \
+media/B-Max.png \
+media/paddle.png \
+media/pipes.png \
+media/tiles.png
+
+
+release/$(LOVE_NAME): $(SOURCE_FILES) $(ASSET_FILES)
+	if not exist release mkdir release
+	7z a -mx9 -tzip $@ $^
+
+
+.PHONY: clean
+clean:
+	-rmdir /S/Q release
