@@ -1,6 +1,6 @@
 # use with: mingw32-make -f Makefile.mingw
 
-VERSION = 1.2.0
+VERSION = 1.2.1
 
 LOVE_NAME = bmx-breakout-love2d_v$(VERSION).love
 
