@@ -104,7 +104,8 @@ end
 function _loadImage(is_anim, url, cell_w, cell_h, first, count)
 	local t = {}
 	
-	t.img = love.graphics.newImage(url)
+	--t.img = love.graphics.newImage(url)
+	t.img = _loadTransparent(url, 0, 0, 0)
 	if not t.img then return end
 	
 	t.img:setFilter("nearest", "nearest")
@@ -186,5 +187,17 @@ end
 
 function drawRect(x, y, width, height)
 	love.graphics.rectangle("fill", x, y, width, height)
+end
+
+
+-- from: https://love2d.org/forums/viewtopic.php?t=10514#p63321
+function _loadTransparent(imagePath, transR, transG, transB)
+   imageData = love.image.newImageData( imagePath )
+   function mapFunction(x, y, r, g, b, a)
+      if r == transR and g == transG and b == transB then a = 0 end
+      return r,g,b,a
+   end
+   imageData:mapPixel( mapFunction )
+   return love.graphics.newImage( imageData )
 end
 
