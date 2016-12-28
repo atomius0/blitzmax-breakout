@@ -40,6 +40,6 @@ Thumbs.db
 ##########
 
 breakout.bmx
-media/
+# media/
 release/
 _tmp/
